@@ -42,7 +42,7 @@ section, .product-grid .alt-img-bg, .product-grid .img-bg {
 }
 
 section {
-	flex: 1 700px;
+	flex: 1 450px;
 	position: relative;
 	overflow: hidden;
 	min-height: 87vh;
@@ -75,11 +75,17 @@ section a {
 }
 
 .product-grid .alt-img-bg {
-	z-index: 0;
+	z-index: 1;
 	opacity: 0;
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 1024px) {
+	section {
+		flex: 1 45vw;
+	}
+}
+
+@media only screen and (min-width: 990px) {	
 	.product-grid .alt-img-bg {
 		opacity: 1;
 	}
@@ -115,16 +121,36 @@ section a {
 	section:nth-of-type(odd):hover .alt-img-bg:hover {
 		transform: translateX(-5%);		
 	}
+	
+	section:nth-of-type(even):hover .alt-img-bg:hover ~ .img-bg {
+		transform: translateX(-95%);
+	}
+	
+	section:nth-of-type(odd):hover .alt-img-bg:hover ~ .img-bg{
+		transform: translateX(95%);		
+	}
 }
 
 section:nth-of-type(odd) a {
-	padding-left: 15vw;
 	margin: 0 20px 0 auto;
 }
 
 section:nth-of-type(even) a {
-	padding-right: 15vw;
 	margin: 0 auto 0 20px;
+}
+
+@media only screen and (max-width: 990px) {
+	section:nth-of-type(odd) a {
+		padding-left: 15vw;
+	}
+
+	section:nth-of-type(even) a {
+		padding-right: 15vw;
+	}
+}
+
+section:nth-of-type(odd) .flex.ver {
+	align-items: end;
 }
 
 .info {
@@ -135,6 +161,8 @@ section:nth-of-type(even) a {
 	transition: transform 1s ease-in-out;
 	margin: auto 0 20px;
 	pointer-events: none;
+	max-width: 90%;
+	z-index: 1;
 }
 
 .info span {
@@ -155,13 +183,13 @@ section:nth-of-type(even) a {
 	font-weight: 600;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 990px) {
 	section .info {
 		transform: translateX(0);
 	}
 }
 
-@media only screen and (min-width: 800px) {		
+@media only screen and (min-width: 990px) {		
 	section:nth-of-type(odd) .info {
 		transform: translateX(120%);
 		text-align: right;
