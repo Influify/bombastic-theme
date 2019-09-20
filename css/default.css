@@ -1,3 +1,5 @@
+
+/* HTML ELEMENTS */
 body {
 	display: flex;
 	flex-direction: column;
@@ -23,6 +25,7 @@ main {
 	min-height: 87vh;
 }
 
+/* FLEX UTILITY */
 .flex, section {
 	display: flex;
 	justify-content: space-around;
@@ -30,16 +33,8 @@ main {
 .flex.ver { flex-direction: column; }
 .flex.hor { flex-direction: row; }
 
-.product-grid {
-	flex-wrap: wrap;
-	height: 100%;
-	width: 100%;
-}
-
-section, .product-grid .alt-img-bg, .product-grid .img-bg {
-	background-size: cover;
-	background-position: center;
-}
+/* PRODUCT GRID */
+/* In this theme, we give the section element to the product grid! */
 
 section {
 	flex: 1 450px;
@@ -48,6 +43,11 @@ section {
 	min-height: 87vh;
 	z-index: 1;
 	justify-content: center;	
+}
+
+section, .product-grid .alt-img-bg, .product-grid .img-bg {
+	background-size: cover;
+	background-position: center;
 }
 	
 section:nth-of-type(even) {
@@ -61,6 +61,12 @@ section:nth-of-type(odd) {
 section a {
 	display: flex;
 	justify-content: center;
+}
+
+.product-grid {
+	flex-wrap: wrap;
+	height: 100%;
+	width: 100%;
 }
 
 .product-grid .alt-img-bg, .product-grid .img-bg {
@@ -79,14 +85,102 @@ section a {
 	opacity: 0;
 }
 
+section:nth-of-type(odd) a {
+	margin: 0 20px 0 auto;
+}
+
+section:nth-of-type(even) a {
+	margin: 0 auto 0 20px;
+}
+
+section:nth-of-type(odd) .flex.ver {
+	align-items: end;
+}
+
+.info {
+	display: inline-block;
+	padding: 20px;
+	background: white;
+	color: black;
+	transition: transform 1s ease-in-out;
+	margin: auto 0 20px;
+	pointer-events: none;
+	max-width: 90%;
+	z-index: 1;
+}
+
+.info span {
+	margin: 5px 0;
+	display: inline-block;
+}
+
+.description, .price {
+	font-size: 0.7em;
+}
+
+.title {
+	font-size: 1.3em;
+	font-weight: 700;
+}
+
+.description {
+	
+}
+
+.description:after {
+	content: "\A";
+}
+
+.price {
+	position: relative;
+	font-weight: 400;
+}
+
+.price.sold-out {
+	opacity: 0.8;
+}
+
+.price.sold-out:before {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 50%;
+	border-top: 2px solid black;
+	z-index: -1;
+}
+
+.price.sold-out:after {
+	content: " (Sold Out)"; 
+	font-weight: 800;
+	background-color: white;
+	z-index: 2;
+}
+
+/* make sure sections take up half the page on desktop and above*/
 @media only screen and (min-width: 1024px) {
 	section {
 		flex: 1 45vw;
 	}
 }
 
-@media only screen and (min-width: 990px) {	
-	.product-grid .alt-img-bg {
+/* only show grid animations on desktop-ish sizes and above */
+@media only screen and (min-width: 990px) {		
+	section:nth-of-type(odd) .info {
+		transform: translateX(120%);
+		text-align: right;
+	}
+
+	section:nth-of-type(even) .info {
+		transform: translateX(-120%);
+		text-align: left;
+	}
+	
+	section:hover .info {
+		opacity: 1;
+		transform: translateX(0%);
+	}.product-grid .alt-img-bg {
 		opacity: 1;
 	}
 	
@@ -131,77 +225,16 @@ section a {
 	}
 }
 
-section:nth-of-type(odd) a {
-	margin: 0 20px 0 auto;
-}
-
-section:nth-of-type(even) a {
-	margin: 0 auto 0 20px;
-}
-
 @media only screen and (max-width: 990px) {
+	section .info {
+		transform: translateX(0);
+	}
+
 	section:nth-of-type(odd) a {
 		padding-left: 15vw;
 	}
 
 	section:nth-of-type(even) a {
 		padding-right: 15vw;
-	}
-}
-
-section:nth-of-type(odd) .flex.ver {
-	align-items: end;
-}
-
-.info {
-	display: inline-block;
-	padding: 20px;
-	background: white;
-	color: black;
-	transition: transform 1s ease-in-out;
-	margin: auto 0 20px;
-	pointer-events: none;
-	max-width: 90%;
-	z-index: 1;
-}
-
-.info span {
-	display: block;
-	margin: 5px 0;
-}
-
-.title {
-	font-size: 1.3em;
-	font-weight: 700;
-}
-
-.description, .price {
-	font-size: 0.7em;
-}
-
-.price {
-	font-weight: 600;
-}
-
-@media only screen and (max-width: 990px) {
-	section .info {
-		transform: translateX(0);
-	}
-}
-
-@media only screen and (min-width: 990px) {		
-	section:nth-of-type(odd) .info {
-		transform: translateX(120%);
-		text-align: right;
-	}
-
-	section:nth-of-type(even) .info {
-		transform: translateX(-120%);
-		text-align: left;
-	}
-	
-	section:hover .info {
-		opacity: 1;
-		transform: translateX(0%);
 	}
 }
