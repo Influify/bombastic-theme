@@ -40,11 +40,26 @@
 </head>
 
 <body id="unloaded" class="loading initial-load">
-	<header class="flex">
-			<span id="menu-trigger"></span>
+	<header class="flex cen">
+			<span id="menu-trigger"><i class="fas fa-bars"></i></span>
 			<h1>H111111</h1>
-			<span id="cart-trigger"></span>
+			<span id="cart-trigger"><i class="fas fa-shopping-cart"></i></span>
 	</header>
+	
+	<nav>
+		<div class="nav-bg"></div>
+		<div class="dropdown">
+			<a href="#">Store</a>
+			<ul>
+				<li><a href="#">Tees</a></li>
+				<li><a href="#">Hoodies</a></li>
+				<li><a href="#">On Sale</a></li>
+			</ul>
+		</div>
+		<a href="#">Tour</a>
+		<a href="#">Contact</a>
+		<a href="#" target="_blank">FAQ</a>
+	</nav>
 	
 	<main class="flex ver">
 		<div class="flex hor product-grid">
@@ -110,5 +125,11 @@
 	<footer>
 		<div></div>
 	</footer>  
+	
+	<script>
+		$("#menu-trigger, .nav-bg").on("click", function (){
+			$('body').toggleClass("nav-is-open");
+		});
+	</script>
 </body>
 </html>
