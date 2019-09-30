@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 	<title>
-		Bombastic
+		Product - Bombastic
 	</title>
 	
 	<!-- update me -->
@@ -63,65 +63,40 @@
 	</nav>
 	
 	<main class="flex ver">
-		<div class="flex hor product-grid">
-			
-			<section>
-				<a href="#">
-					<div class="alt-img-bg" style="background-image:url(./img1b.JPG)"></div>
-					<div class="img-bg" style="background-image:url(./img1.JPG)"></div>
-					<div class="flex ver">
-						<div class="info">
-							<span class="title">Movements Windbreaker</span>
-							<div class="description">Embroidered 100% nonmaterial windbreaker.</div>
-							<span class="price"><span class="pre-order">Pre-Order - </span> $60.00</span>
-						</div>
-					</div>
-				</a>
-			</section>
-			
-			<section>
-				<a href="#">
-					<div class="alt-img-bg" style="background-image:url(./img2b.JPG)"></div>
-					<div class="img-bg" style="background-image:url(./img2.JPG)"></div>
-					<div class="flex ver">
-						<div class="info">
-							<span class="title">FS Hoodie</span>
-							<div class="description">Design screen printed on 100% cotton garment</div>
-							<span class="price sold-out">$40.00</span>
-						</div>
-					</div>
-				</a>
-			</section>
-			
-			<section>
-				<a href="#">
-					<div class="alt-img-bg" style="background-image:url(./img3b.JPG)"></div>
-					<div class="img-bg" style="background-image:url(./img3.JPG)"></div>
-					<div class="flex ver">
-						<div class="info">
-							<span class="title">Wonky Hoodie</span>
-							<div class="description">Design embroidered on 100% cotton garment</div>
-							<span class="price sold-out"><span class="pre-order">Pre-Order - </span> $40.00</span>
-						</div>
-					</div>
-				</a>
-			</section>
-			
-			<section>
-				<a href="#">
-					<div class="flex ver">
-					<div class="alt-img-bg" style="background-image:url(./img4b.jpg)"></div>
-					<div class="img-bg" style="background-image:url(./img4.jpg)"></div>
-						<div class="info">
-							<span class="title">Lemon Boy Hat</span>
-							<div class="description">Design embroidered on whatever a dad hat is made of. (forgot lol)</div>
-							<span class="price">$40.00</span>
-						</div>
-					</div>
-				</a>
-			</section>
+		<div class="product-images">
+			<img src="img1.JPG">
+			<img src="img1b.JPG">
+		</div>
+		<div class="product-quickadd flex clump ver">
+			<span>Product Quick-add</span>
+			<span>[Quick-Add Variation Section]</span>
+		</div>
+		<div class="product-details">
 		</div>
 	</main>
+	
+	<style>
+		.product-images {
+			min-height: 100vh;
+			background: black;
+			padding-bottom: 15vh;
+		}
+		
+		.product-quickadd {
+			position: fixed;
+			width: 100%;
+			height: 25vh;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background: white;
+			z-index: 11;
+		}
+		
+		.product-details {
+		
+		}
+	</style>
 	
 	<footer>
 		<div class="flex cen spread">
@@ -133,6 +108,11 @@
 	<script>
 		$("#menu-trigger, .nav-bg").on("click", function (){
 			$('body').toggleClass("nav-is-open");
+		});
+		
+		$(".product-quickadd").scrollToFixed({
+			bottom: 0,
+			limit: function() { return $('.product-images').offset().top }
 		});
 	</script>
 </body>
