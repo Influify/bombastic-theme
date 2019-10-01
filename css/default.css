@@ -1,3 +1,6 @@
+html {
+	scroll-behavior: smooth;
+}
 
 /* HTML ELEMENTS */
 body {
@@ -8,6 +11,10 @@ body {
 	min-height: 100vh;
 	font-size: calc(1rem + 1vw);
 	padding-top: calc(8vh + 50px);
+}
+
+a, a:hover {
+	color: black;
 }
 
 img {
@@ -45,12 +52,33 @@ header span {
 	cursor: pointer;
 }
 
+header h1 {
+	font-size: calc(1rem + 2vw);
+	text-align: center;
+}
+
 footer {
 	background: white;
 }
 
 footer > div {
 	width: 100%;
+}
+
+footer span {
+	font-size: 0.8em;
+}
+
+@media only screen and (max-width: 430px) {
+	footer > div {
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	
+	footer span {
+		width: 100%;
+		text-align: center;
+	}
 }
 
 main {
@@ -97,6 +125,7 @@ nav a {
 body.nav-is-open {
 	overflow-y: scroll;
 	position: fixed;
+	width: 100%;
 }
 
 .nav-is-open header {
@@ -126,7 +155,6 @@ body.nav-is-open {
 
 /* PRODUCT GRID */
 /* In this theme, we give the section element to the product grid! */
-
 section {
 	flex: 1 450px;
 	position: relative;
@@ -331,3 +359,161 @@ section:nth-of-type(odd) .flex.ver {
 }
 
 /* PRODUCT PAGES */
+.product-container {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+}
+
+.product-quickadd {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	min-height: 25vh;
+	padding-bottom: 2rem;
+	background: white;
+	z-index: 5;
+}
+
+.product-quickadd .details {
+	height: 2rem;
+	font-size: 1.5rem;
+	margin-bottom: 0.5rem;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	text-align: center;
+	animation: FADE 3s linear infinite
+}
+
+@keyframes FADE {
+	0% { opacity: 0.3 }
+	50% { opacity: 1 }
+	100% { opacity: 0.3 } 
+}
+
+.product-details {
+	min-height: 25vh;
+	padding: 5vh 5vw;
+	z-index: 6;
+	background: white;
+}
+
+.product-details h1 {
+	font-size: 1.2em;
+}
+
+.product-details .copy {
+	font-size: calc(1rem + 0.5vw);
+}
+
+.product-details > span, .product-details > div {
+	margin: 1vh 0;
+}
+
+.btn {
+	color: black;
+	background-color: white;
+	border: 1px solid black;
+	padding: calc(10px + 0.5vw);
+	height: auto;
+	line-height: calc(0.8rem + 0.5vw);
+	font-size: calc(0.8rem + 0.5vw);
+}
+
+.btn.disabled {
+	border-color: transparent;
+}
+
+.btn:hover {
+	background-color: black;
+	color: white;
+	border-color: white;
+}
+
+
+@media only screen and (min-width: 800px) {
+	.product-container {
+		display: block;
+		width: 100%;
+	}
+	
+	.product-images {
+		min-height: 100vh;
+	}
+	
+	.product-quickadd {
+		display: none;
+	}
+	
+	.product-images {
+		width: 50%;
+		margin-right: auto;
+	}
+	
+	.product-details {
+		position: fixed;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		width: 50%;
+		
+	}
+}
+
+/* PRODUCT SELECTORS */
+.selector-container {
+  transition: opacity 0.5s ease, max-height 1s ease-in;
+  max-height: 500px;
+  margin: 15px auto;
+  width: 100%;
+	text-align: center;
+}
+
+.selector {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  color: black;
+  margin: 0.5vw;
+  min-width: calc(30px + 1.5vw);
+  height: calc(30px + 1.5vw);
+  cursor: pointer;
+  border-radius: 50px;
+  padding: 0 calc(5px + 0.5vw);
+  transition: opacity .4s ease;
+  overflow: hidden;
+}
+
+.selector.full-width {
+  width: 100%;
+}
+
+.selector.selected-color, #selected.selector, .selected-option, .selected.selector {
+  background-color: black;
+  color: white;
+}
+
+.selector.in-stock:hover, .selector.available:hover {
+  background-color: black;
+  color: white;
+}
+
+.selector.unavailable, .selector.out-of-stock {
+  display: none;
+}
+
+.sizes-container.unselected {
+  opacity: 0;
+  max-height: 0px;
+  margin-top: 0;
+}
+
+.sizes-container .size-selector {
+  font-size: calc(1rem + 0.2vw);
+}
