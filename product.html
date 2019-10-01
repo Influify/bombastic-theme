@@ -94,13 +94,8 @@
 					</div>
 					<span class="btn disabled" id="variation-submit" onclick="javascript:Store.cart.add($('#selected').data('id'));return false;"><span class="selected-price"></span>Add</span>
 				</div>
-				<div class="copy scroller">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mollis lacus vitae massa egestas porttitor non et arcu. Donec in lacus ante. Nunc tristique nunc sed neque interdum, non interdum ex pharetra. Sed accumsan turpis eget risus tristique, eget bibendum est tempor. Sed bibendum turpis tempus eros egestas pretium. Nunc in augue sit amet lectus mattis molestie ut vel tortor. Ut lacinia elementum facilisis. Duis felis sapien, placerat nec aliquam nec, placerat maximus lorem. Nunc sed dapibus quam. In hac habitasse platea dictumst. Duis tempus et leo vitae ornare. Curabitur vitae posuere ipsum. Nunc mollis ac neque lobortis viverra. 
-				
-				<br><br>Sed eu massa libero. Donec aliquam nisl feugiat dolor viverra egestas non in tellus. Donec feugiat pellentesque dolor, a consequat enim gravida quis. Mauris id venenatis nibh. Nulla ultrices elit in magna consectetur aliquam. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque placerat tincidunt erat. </div>
+				<div class="copy scroller">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mollis lacus vitae massa egestas porttitor non et arcu. Donec in lacus ante. Nunc tristique nunc sed neque interdum, non interdum ex pharetra. Sed accumsan turpis eget risus tristique, eget bibendum est tempor. Sed bibendum turpis tempus eros egestas pretium. Nunc in augue sit amet lectus mattis eotie ut vel tortor.  </div>
 			</div>
-		</div>
-		<div style="background: gray;min-height: 50vh;z-index: 10;" class="flex ver clump">
-			(to be related products)
 		</div>
 	</main>
 	
@@ -112,20 +107,16 @@
 	</footer>  
 	
 	<script>
-		function debounce(func, wait, immediate) {
-			var timeout;
+		function throttle(fn, wait) {
+			var time = Date.now();
 			return function() {
-				var context = this, args = arguments;
-				var later = function() {
-					timeout = null;
-					if (!immediate) func.apply(context, args);
-				};
-				var callNow = immediate && !timeout;
-				clearTimeout(timeout);
-				timeout = setTimeout(later, wait);
-				if (callNow) func.apply(context, args);
-			};
-		};
+				if ((time + wait - Date.now()) < 0) {
+					fn();
+					time = Date.now();
+				}
+			}
+		}
+
 	
 		$("#menu-trigger, .nav-bg").on("click", function (){
 			$('body').toggleClass("nav-is-open");
@@ -212,13 +203,13 @@
 				selectSize($this);
 			});
 		
-			$(window).on('scroll', function () {
+			$(window).on('scroll', throttle(function () {
 				console.log('scrollfire');
         var imageH =  $(this).height() - $('.product-images').height();
         var imageT = this.scrollY - $('.product-images').offset().top;
         
-        $('.scroller').scrollTop(imageT / imageH * ($('.scroller').innerHeight() - $(this).height()));
-			});
+        $('.scroller').scrollTop(imageT / imageH * ($('.scroller').height() - $(this).height()));
+			}, 1));
 			
 			pageEventsSet = true;
 		}
