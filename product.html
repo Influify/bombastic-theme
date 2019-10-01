@@ -40,7 +40,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollToFixed/1.0.8/jquery-scrolltofixed-min.js" integrity="sha256-Kl1vQ0yioe6J6idmj55qGNgoOrKOTJh4WYFdmiVnvZw=" crossorigin="anonymous"></script>
 </head>
 
-<body id="unloaded" class="loading initial-load">
+<body id="product" class="loading initial-load">
 	<header class="flex cen">
 			<span id="menu-trigger"><i class="fas fa-bars"></i></span>
 			<h1>H111111</h1>
@@ -63,42 +63,111 @@
 	</nav>
 	
 	<main class="flex ver">
-		<div class="product-images">
-			<img src="img1.JPG">
-			<img src="img1b.JPG">
+		<div class="product-container">
+			<div class="product-images flex ver clump">
+				<img src="img1.JPG">
+				<img src="img1b.JPG">
+			</div>
+			<div class="product-quickadd flex clump ver docked">
+				<span>Product Title</span>
+				<span>[Variation Section]</span>
+				<span>[Add to Cart button w/ price]</span>
+				<span class="details">v Details v</span>
+			</div>
+			<div class="product-details flex clump ver">
+				<h1>Product Title</h1>
+				<span>[Variation Section]</span>
+				<span>[Add to Cart button w/ price]</span>
+				<span class="copy">Embroidered 100% nonmaterial windbreaker. We'll need to figure out how to separate short descriptions from full ones, maybe just by truncating or clipping it at the first period? Who knows!</span>
+			</div>
 		</div>
-		<div class="product-quickadd flex clump ver">
-			<span>Product Quick-add</span>
-			<span>[Quick-Add Variation Section]</span>
-		</div>
-		<div class="product-details">
+		<div style="background: gray;min-height: 50vh;z-index: 10;" class="flex ver clump">
+			(to be related products)
 		</div>
 	</main>
 	
-	<style>
+	<style>		
+		.product-container {
+			position: relative;
+			display: flex;
+			flex-direction: column;
+		}
+	
 		.product-images {
-			min-height: 100vh;
-			background: black;
-			padding-bottom: 15vh;
 		}
 		
 		.product-quickadd {
 			position: fixed;
-			width: 100%;
-			height: 25vh;
 			bottom: 0;
 			left: 0;
 			right: 0;
+			width: 100%;
+			min-height: 25vh;
+			padding-bottom: 1.5rem;
 			background: white;
-			z-index: 11;
+			z-index: 5;
+		}
+		
+		.product-quickadd .details {
+			height: 1.5rem;
+			font-size: 1rem;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			text-align: center;
 		}
 		
 		.product-details {
+			min-height: 25vh;
+			padding: 5vh 5vw;
+			z-index: 6;
+			background: white;
+		}
 		
+		.product-details h1 {
+			font-size: 1.2em;
+		}
+		
+		.product-details .copy {
+			font-size: calc(1rem + 0.5vw);
+		}
+		
+		.product-details > span, .product-details > div {
+			margin: 1vh 0;
+		}
+		
+		@media only screen and (min-width: 800px) {
+			.product-container {
+				display: block;
+				width: 100%;
+			}
+			
+			.product-images {
+				min-height: 100vh;
+			}
+			
+			.product-quickadd {
+				display: none;
+			}
+			
+			.product-images {
+				width: 50%;
+				margin-right: auto;
+			}
+			
+			.product-details {
+				position: fixed;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				width: 50%;
+				
+			}
 		}
 	</style>
 	
-	<footer>
+	<footer class="flex cen">
 		<div class="flex cen spread">
 			<span class="copyright">&#9400; Store Name Current Year</span>
 			<span class="links"><a>Contact</a> / <a>FAQ</a></span>
@@ -108,11 +177,6 @@
 	<script>
 		$("#menu-trigger, .nav-bg").on("click", function (){
 			$('body').toggleClass("nav-is-open");
-		});
-		
-		$(".product-quickadd").scrollToFixed({
-			bottom: 0,
-			limit: function() { return $('.product-images').offset().top }
 		});
 	</script>
 </body>

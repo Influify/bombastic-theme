@@ -45,6 +45,14 @@ header span {
 	cursor: pointer;
 }
 
+footer {
+	background: white;
+}
+
+footer > div {
+	width: 100%;
+}
+
 main {
 	min-height: 87vh;
 }
