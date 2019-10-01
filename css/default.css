@@ -97,7 +97,7 @@ nav {
 	justify-content: center;
 	align-items: flex-start;
 	z-index: 8;
-	transform: translateY(-100vh);
+	transform: translateY(-80vh);
 	pointer-events: none;
 	transition: transform 1s ease-in-out;
 	padding: 8vh 5vw;
@@ -371,15 +371,14 @@ section:nth-of-type(odd) .flex.ver {
 	left: 0;
 	right: 0;
 	width: 100%;
-	min-height: 25vh;
 	padding-bottom: 2rem;
 	background: white;
 	z-index: 5;
 }
 
 .product-quickadd .details {
-	height: 2rem;
-	font-size: 1.5rem;
+	height: 1.5rem;
+	font-size: 1rem;
 	margin-bottom: 0.5rem;
 	position: absolute;
 	bottom: 0;
@@ -387,6 +386,14 @@ section:nth-of-type(odd) .flex.ver {
 	right: 0;
 	text-align: center;
 	animation: FADE 3s linear infinite
+}
+
+.product-quickadd .selector-container {
+	margin: 7.5px auto;
+}
+
+.product-quickadd span:first-child {
+	margin: 5px 0 0;
 }
 
 @keyframes FADE {
@@ -400,6 +407,8 @@ section:nth-of-type(odd) .flex.ver {
 	padding: 5vh 5vw;
 	z-index: 6;
 	background: white;
+	align-items: center; 
+	justify-content: center;
 }
 
 .product-details h1 {
@@ -408,6 +417,14 @@ section:nth-of-type(odd) .flex.ver {
 
 .product-details .copy {
 	font-size: calc(1rem + 0.5vw);
+	margin: 3vh 0;
+}
+	
+.product-selection {
+	display: inherit;
+	flex-direction: inherit;
+	justify-content: inherit;
+	align-items: inherit;
 }
 
 .product-details > span, .product-details > div {
@@ -460,7 +477,12 @@ section:nth-of-type(odd) .flex.ver {
 		right: 0;
 		bottom: 0;
 		width: 50%;
-		
+		padding: 15vh 5vw 10vh;
+		justify-content: flex-start;		
+	}
+	
+	.product-details .scroller {
+		overflow: hidden;
 	}
 }
 

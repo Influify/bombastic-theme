@@ -80,19 +80,23 @@
 					</div>
 					<a href="#product-details" class="details">&#9660; Details &#9660;</a>
 			</div>
-			<div id="product-details" class="product-details flex clump ver">
-				<h1>Product Title</h1>
-				<div class="selector-container sizes-container">
-						<a data-price="50.0" class="selector size-selector xs in-stock">XS</a>
-						<a data-price="50.0" class="selector size-selector s in-stock">S</a>
-						<a data-price="50.0" class="selector size-selector m in-stock">M</a>
-						<a data-price="50.0" class="selector size-selector l in-stock" id="">L</a>
-						<a data-price="50.0" class="selector size-selector xl in-stock" id="">XL</a>
-						<a data-price="50.0" class="selector size-selector 2x in-stock">2X</a>
-						<a data-price="52.0" class="selector size-selector 3x in-stock">3X</a>
+			<div id="product-details" class="product-details flex ver clump">
+				<div class="product-selection">
+					<h1>Product Title</h1>
+					<div class="selector-container sizes-container">
+							<a data-price="50.0" class="selector size-selector xs in-stock">XS</a>
+							<a data-price="50.0" class="selector size-selector s in-stock">S</a>
+							<a data-price="50.0" class="selector size-selector m in-stock">M</a>
+							<a data-price="50.0" class="selector size-selector l in-stock" id="">L</a>
+							<a data-price="50.0" class="selector size-selector xl in-stock" id="">XL</a>
+							<a data-price="50.0" class="selector size-selector 2x in-stock">2X</a>
+							<a data-price="52.0" class="selector size-selector 3x in-stock">3X</a>
+					</div>
+					<span class="btn disabled" id="variation-submit" onclick="javascript:Store.cart.add($('#selected').data('id'));return false;"><span class="selected-price"></span>Add</span>
 				</div>
-				<span class="btn disabled" id="variation-submit" onclick="javascript:Store.cart.add($('#selected').data('id'));return false;"><span class="selected-price"></span>Add</span>
-				<span class="copy">Embroidered 100% nonmaterial windbreaker. We'll need to figure out how to separate short descriptions from full ones, maybe just by truncating or clipping it at the first period? Who knows!</span>
+				<div class="copy scroller">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mollis lacus vitae massa egestas porttitor non et arcu. Donec in lacus ante. Nunc tristique nunc sed neque interdum, non interdum ex pharetra. Sed accumsan turpis eget risus tristique, eget bibendum est tempor. Sed bibendum turpis tempus eros egestas pretium. Nunc in augue sit amet lectus mattis molestie ut vel tortor. Ut lacinia elementum facilisis. Duis felis sapien, placerat nec aliquam nec, placerat maximus lorem. Nunc sed dapibus quam. In hac habitasse platea dictumst. Duis tempus et leo vitae ornare. Curabitur vitae posuere ipsum. Nunc mollis ac neque lobortis viverra. 
+				
+				<br><br>Sed eu massa libero. Donec aliquam nisl feugiat dolor viverra egestas non in tellus. Donec feugiat pellentesque dolor, a consequat enim gravida quis. Mauris id venenatis nibh. Nulla ultrices elit in magna consectetur aliquam. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque placerat tincidunt erat. </div>
 			</div>
 		</div>
 		<div style="background: gray;min-height: 50vh;z-index: 10;" class="flex ver clump">
@@ -108,12 +112,28 @@
 	</footer>  
 	
 	<script>
+		function debounce(func, wait, immediate) {
+			var timeout;
+			return function() {
+				var context = this, args = arguments;
+				var later = function() {
+					timeout = null;
+					if (!immediate) func.apply(context, args);
+				};
+				var callNow = immediate && !timeout;
+				clearTimeout(timeout);
+				timeout = setTimeout(later, wait);
+				if (callNow) func.apply(context, args);
+			};
+		};
+	
 		$("#menu-trigger, .nav-bg").on("click", function (){
 			$('body').toggleClass("nav-is-open");
 		});
 		
 		// Product page functions
 		var pageEventsSet = false;
+		var totalScroll = 0;
 		
 		//If there's a selection, enable button
 		function checkSelected() {
@@ -126,6 +146,7 @@
 
 		function clearSelection() {
 			$('#selected').attr('id','');
+			$('.selected').removeClass('selected');
 			$('#variation-submit').addClass('disabled');
 			$('.selected-price').text("");
 		}
@@ -189,6 +210,14 @@
 			$('.size-selector').on('click', function(e){
 				var $this = $(this);
 				selectSize($this);
+			});
+		
+			$(window).on('scroll', function () {
+				console.log('scrollfire');
+        var imageH =  $(this).height() - $('.product-images').height();
+        var imageT = this.scrollY - $('.product-images').offset().top;
+        
+        $('.scroller').scrollTop(imageT / imageH * ($('.scroller').innerHeight() - $(this).height()));
 			});
 			
 			pageEventsSet = true;
