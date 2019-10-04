@@ -118,13 +118,12 @@ main {
 	background: white;
 	z-index: 5;
 	opacity: 1;
-	pointer-events: none;
 	transition: opacity 1s ease-in-out;
 }
 
 .loaded .loader {
 	opacity: 0;
-	pointer-events: initial;
+	pointer-events: none;
 }
 
 /* NAVIGATION */
@@ -324,10 +323,10 @@ section:nth-of-type(odd) .flex.ver {
 	z-index: -1;
 }
 
-.price.sold-out:after {
-	content: " (Sold Out)"; 
+.sold-text {
 	font-weight: 800;
 	background-color: white;
+	font-size: 0.7em;
 	z-index: 2;
 }
 
