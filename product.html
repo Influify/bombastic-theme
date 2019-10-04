@@ -37,6 +37,7 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
+	<script type="text/javascript" src="./js/default.js"></script>
 </head>
 
 <body id="product" class="loading initial-load">
@@ -49,8 +50,9 @@
 	<nav>
 		<div class="nav-bg"></div>
 		<div class="dropdown">
-			<a href="#">Store</a>
+			<a>Store &#9660;</a>
 			<ul>
+				<li><a href="#">All</a></li>
 				<li><a href="#">Tees</a></li>
 				<li><a href="#">Hoodies</a></li>
 				<li><a href="#">On Sale</a></li>
@@ -105,114 +107,5 @@
 			<span class="links"><a>Contact</a> / <a>FAQ</a></span>
 		</div>
 	</footer>  
-	
-	<script>
-		function throttle(fn, wait) {
-			var time = Date.now();
-			return function() {
-				if ((time + wait - Date.now()) < 0) {
-					fn();
-					time = Date.now();
-				}
-			}
-		}
-
-	
-		$("#menu-trigger, .nav-bg").on("click", function (){
-			$('body').toggleClass("nav-is-open");
-		});
-		
-		// Product page functions
-		var pageEventsSet = false;
-		var totalScroll = 0;
-		
-		//If there's a selection, enable button
-		function checkSelected() {
-			if($('#selected').length) {
-				$('#variation-submit').removeClass('disabled');
-			} else {
-				$('#variation-submit').addClass('disabled');
-			}
-		}
-
-		function clearSelection() {
-			$('#selected').attr('id','');
-			$('.selected').removeClass('selected');
-			$('#variation-submit').addClass('disabled');
-			$('.selected-price').text("");
-		}
-
-		// Updates selected option size availability
-		function updateOption(el) {
-			if(!$(el).hasClass('unavailable')) {
-				clearSelection();
-				var sizes = $('.size-array').data("sizes").split(", ");
-				
-				updateImage(el);
-				$('.sizes-container').removeClass('unselected');
-				$('.selected-option').removeClass('selected-option');
-				el.addClass('selected-option');
-				
-				sizes.forEach(function(size){
-					var currentSize = " ." + size;
-					if(el.data(size)) {
-						$(currentSize).removeClass('out-of-stock');
-						$(currentSize).addClass('in-stock');
-						$(currentSize).data('id', $("." + $(el).attr('id')).data(size)); //grab the id of the option selected, assign product ids from samp
-						$(currentSize).data('price', $(el).data('price') + ".0");
-						
-					} else {
-						$(currentSize).addClass('out-of-stock');
-						$(currentSize).removeClass('in-stock');
-						$(currentSize).attr('id','');
-						$(currentSize).data('id', ''); //remove data id so wrong variations don't get added
-					}
-				});
-			}
-		}
-
-		// Adds #selected on click, removes old
-		function selectSize(el) {
-			if (!(el.attr('id') == "selected")) { 
-				$('#selected').attr('id','');
-				$('.selected').removeClass('selected');
-				$('#product-details .selector-container a:eq(' + el.index() + ')').attr('id','selected');
-				$('#selected').addClass('selected');
-				$('.product-quickadd .selector-container a:eq(' + el.index() + ')').addClass('selected');
-				$('#variation-submit').removeClass('disabled');
-				$('.selected-price').text("$" + $('#selected').data('price') + "0 / ");
-				
-			} else {
-				clearSelection();
-			}
-		}
-		
-		if (!pageEventsSet) {
-			$('.option-selector').on('click', function(e){
-				var $this = $(this);
-				updateOption($this);
-				checkSelected();
-			});
-			
-			$('.option-selector[href^="#"]').on('click', function (e) {
-				e.preventDefault();
-			});
-			
-			$('.size-selector').on('click', function(e){
-				var $this = $(this);
-				selectSize($this);
-			});
-		
-			$(window).on('scroll', throttle(function () {
-				console.log('scrollfire');
-        var imageH =  $(this).height() - $('.product-images').height();
-        var imageT = this.scrollY - $('.product-images').offset().top;
-        
-        $('.scroller').scrollTop(imageT / imageH * ($('.scroller').height() - $(this).height()));
-			}, 1));
-			
-			pageEventsSet = true;
-		}
-	</script>
 </body>
 </html>

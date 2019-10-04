@@ -37,19 +37,29 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
+	<script type="text/javascript" src="./js/default.js"></script>
 </head>
 
 <body id="unloaded" class="loading initial-load">
 	<header class="flex cen">
 			<span id="menu-trigger"><i class="fas fa-bars"></i></span>
-			<h1>H111111</h1>
+			<a class="flex cen ver"><img src="logo-tall.png"></a>
 			<span id="cart-trigger"><i class="fas fa-shopping-cart"></i></span>
 	</header>
+	
+	<div class="loader flex clump cen">
+		<div>
+			<span><span class="inner">.</span></span>
+			<span><span class="inner">.</span></span>
+			<span><span class="inner">.</span></span>
+			<span><span class="inner">.</span></span>
+		</div>
+	</div>
 	
 	<nav>
 		<div class="nav-bg"></div>
 		<div class="dropdown">
-			<a href="#">Store</a>
+			<a href="#">Store &#9660;</a>
 			<ul>
 				<li><a href="#">Tees</a></li>
 				<li><a href="#">Hoodies</a></li>
@@ -128,11 +138,5 @@
 			<span class="links"><a>Contact</a> / <a>FAQ</a></span>
 		</div>
 	</footer>  
-	
-	<script>
-		$("#menu-trigger, .nav-bg").on("click", function (){
-			$('body').toggleClass("nav-is-open");
-		});
-	</script>
 </body>
 </html>
