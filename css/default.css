@@ -594,3 +594,11 @@ section:nth-of-type(odd) .flex.ver {
 .sizes-container .size-selector {
   font-size: calc(1rem + 0.2vw);
 }
+
+/* MISC PAGES */
+.inner-page {
+	width: calc(1000px + 14.5vw);
+	margin: auto;
+	max-width: 100%;
+	padding: 0 10px;
+}
